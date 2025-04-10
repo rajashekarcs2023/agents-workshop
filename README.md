@@ -79,6 +79,93 @@ Both agents follow a modular three-component architecture:
    - Configures rate limiting and error handling
    - Manages agent identity and addresses
    - Establishes connections to the Agentverse
+  
+
+---
+
+# 🧠 Agent Architecture Overview
+
+Our system is composed of **three main components**, each with a clearly defined role. Together, they create a seamless pipeline from **natural language input** to **expert-level output**.
+
+---
+
+## 📂 `service_file.py` (e.g. `stock_price.py`, `arithmetic_solver.py`)
+
+> **"The EXPERT who knows how to do one specific job really well."**
+
+- Does not understand natural language.
+- Excellent at a **specialized task**: stock prices, math, conversions, etc.
+- Works best with structured, unambiguous input.
+
+**🔧 Analogy**: Think of this as a **calculator** or **financial analyst** — incredibly skilled at their job, but not conversational.
+
+---
+
+## 💬 `chat_proto.py`
+
+> **"The TRANSLATOR who speaks both human language and technical language."**
+
+- Accepts **natural language input** from the user.
+- Uses AI or parsing logic to extract **intents and parameters**.
+- Talks to the appropriate EXPERT and formats the response for users.
+
+**🧠 Analogy**: Like a **personal assistant** who understands you and knows how to get help from experts behind the scenes.
+
+---
+
+## 🧩 `agent.py`
+
+> **"The MANAGER who makes sure everything runs smoothly."**
+
+- Handles orchestration and routing of requests.
+- Manages timeouts, error handling, and resource control.
+- Ensures a smooth handoff between the TRANSLATOR and EXPERTS.
+
+**📋 Analogy**: Acts like an **office manager**, ensuring the right expert is consulted and everything stays organized.
+
+---
+
+# 🔄 Step-by-Step Example: Stock Price Request
+
+Let’s walk through a real request:
+
+### 🗣 User Input:
+> *"What's the price of MSFT stock?"*
+
+---
+
+### 1. **The TRANSLATOR (`chat_proto.py`) receives the message**
+- Understands this is a request for stock information.
+
+### 2. **TRANSLATOR uses an AI model to extract key parameters**
+- Identifies `"MSFT"` as the ticker symbol.
+
+### 3. **TRANSLATOR sends this to the EXPERT (`stock_price.py`)**
+- Passes `"MSFT"` as a structured input.
+
+### 4. **The EXPERT queries an external API (e.g., Alpha Vantage)**
+- Retrieves live stock data: price, daily change, etc.
+
+### 5. **The TRANSLATOR receives the raw data**
+- Converts it into a clear, human-readable message.
+
+---
+
+### ✅ Final Output to User:
+> **"Microsoft stock is currently trading at $415.25, up 1.2% today."**
+
+---
+
+## 🔁 Summary of Roles
+
+| Component        | Role Description                          | Analogy                     |
+|------------------|--------------------------------------------|-----------------------------|
+| `service_file.py` | Specialist function (stock, math, etc.)   | Calculator / Analyst        |
+| `chat_proto.py`   | Natural language interpreter + formatter  | Personal Assistant          |
+| `agent.py`        | System orchestrator and manager           | Office Manager              |
+
+---
+
 
 ## 🚀 Getting Started
 
