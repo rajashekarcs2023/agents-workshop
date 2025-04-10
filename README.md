@@ -1,4 +1,4 @@
-<img width="1220" alt="Screenshot 2025-04-09 at 6 48 24 PM" src="https://github.com/user-attachments/assets/3235d86b-7560-42ce-8769-6f6d8bcea0be" /># agents-workshop
+# Innovation Lab Fetch AI Workshop : Build and Launch your agents on Agentverse
 # uAgents: Natural Language-Powered Agents
 
 This repository contains implementations of two powerful AI agents built with the uAgents framework and enhanced with natural language understanding. Each agent demonstrates how to create specialized capabilities that extend the abilities of Large Language Models (LLMs).
